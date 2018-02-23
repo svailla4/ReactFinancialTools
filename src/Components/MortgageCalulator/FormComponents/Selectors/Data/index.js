@@ -8,3 +8,12 @@ export const terms = {
   '5vc': '5 year variable closed',
   '5vo': '5 year variable open',
 }
+
+export const frequency = {
+  '12':'Monthly',
+  '24':'Semi-Monthly',
+  '26':'Bi-Weekly',
+  '26A':'Accelerated Bi-Weekly',
+  '52':'Weekly',
+  '52A':'Accelerated Weekly'
+}

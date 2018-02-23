@@ -4,20 +4,23 @@ import Select from 'material-ui/Select';
 import * as React from 'react';
 import {withHandlers, withState, defaultProps, compose, withProps, mapProps} from 'recompose';
 import { FormControl, FormHelperText } from 'material-ui/Form';
-import {terms} from './Data/index'
+import {terms, frequency} from './Data/index'
 import type { HOC } from 'recompose'
 
 type Props ={
-  // options: Array<React.Element<typeof string>>,
+  options: React.Node,
+  label: string
 }
 
-const options = Object.keys(terms).map(key=>
-  <option value={key}>{terms[key]}</option>
+const mapOptions =(data)=> Object.keys(data).map(key=>
+  <option value={key} key={key}>{data[key]}</option>
 )
 
-const BaseComponent = ({options})=>
+const arrayType = mapOptions
+
+const BaseComponent = ({options, label})=>
         <FormControl>
-           <InputLabel htmlFor="terms">Terms and Interest Rate</InputLabel>
+           <InputLabel htmlFor="terms">{label}</InputLabel>
            <Select
              native>
              {options}
@@ -25,9 +28,19 @@ const BaseComponent = ({options})=>
        </FormControl>
 
 const TermComponent: HOC<*, Props> = compose(
-  mapProps((props)=> {options: options}
-  )
+  defaultProps({
+    options: mapOptions(terms)
+  })
+)(BaseComponent)
+
+const FrequencyComponent: HOC<*, Props> = compose(
+  defaultProps({
+    options: mapOptions(frequency)
+  })
 )(BaseComponent)
 
 
-export default BaseComponent;
+export {
+  FrequencyComponent,
+  TermComponent
+}

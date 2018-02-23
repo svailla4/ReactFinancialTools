@@ -3,7 +3,7 @@ import React from 'react';
 import {Flex, Item} from '../FlexBox';
 import MortgageInput from './FormComponents/Inputs/MoneyInput'
 import InterestRateInput from './FormComponents/Inputs/InterestRateInput'
-import TermAndInterest from './FormComponents/Selectors/index'
+import {TermComponent, FrequencyComponent} from './FormComponents/Selectors/index'
 
 
 
@@ -16,8 +16,9 @@ class MortgageForm extends React.Component{
     return(
       <Flex flexDirection="column">
         <MortgageInput label="Mortgage Amount"/>
-        <InterestRateInput label="Term and Type" />
-        <TermAndInterest/>
+        <InterestRateInput label="Interest Rate" />
+        <TermComponent label="Term and Type"/>
+        <FrequencyComponent label="Frequency"/>
 
       </Flex>
           )

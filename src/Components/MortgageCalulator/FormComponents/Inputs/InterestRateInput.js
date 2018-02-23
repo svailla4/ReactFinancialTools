@@ -6,7 +6,7 @@ let EnhancedComponent = compose(
   defaultProps({
     endAdornment: {position: "start", text: "%"}
   }),
-  withState('value', 'updateValue', ''),
+  withState('value', 'updateValue', '3.00'),
   withHandlers({
     onChange: props => event => {
       let value:string = event.target.value;

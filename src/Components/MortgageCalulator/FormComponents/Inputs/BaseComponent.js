@@ -31,8 +31,8 @@ const BaseComponent = ({onBlur, onFocus, onChange, value, label, startAdornment,
 
 let EnhancedComponent: HOC <*,Props> = compose(
   defaultProps({
-    startAdornment: {position: "", text: ""},
-    endAdornment: {position: "", text: ""},
+    startAdornment: {position: undefined, text: ""},
+    endAdornment: {position: undefined, text: ""},
   }),
 )(BaseComponent)
 

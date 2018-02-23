@@ -7,7 +7,7 @@ let EnhancedComponent = compose(
   defaultProps({
     startAdornment: {position: "start", text: "$"}
   }),
-  withState('value', 'updateValue', ''),
+  withState('value', 'updateValue', '100,000'),
   withHandlers({
     onChange: props => event => {
       props.updateValue(removeNonNumberCharacters(event.target.value))
