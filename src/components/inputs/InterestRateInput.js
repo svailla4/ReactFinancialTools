@@ -1,6 +1,7 @@
+/* @flow */
 import {withHandlers, withState, defaultProps, compose} from 'recompose';
 import BaseComponent from './BaseComponent'
-import {validInterestRateFormat, formatInterestRate} from '../Utils/StringUtils';
+import {validInterestRateFormat, formatInterestRate} from '../../utils/stringUtils';
 
 let EnhancedComponent = compose(
   defaultProps({

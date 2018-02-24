@@ -12,17 +12,18 @@ type Props = {
   startAdornment: {position:string, text: string},
   endAdornment: {position:string, text: string},
   onBlur?: ()=>void,
+  OnBlurReduxChange?: ()=>void,
   onFocus?: ()=>void,
   onChange: ()=>void
 }
 
-const BaseComponent = ({onBlur, onFocus, onChange, value, label, startAdornment, endAdornment})=>
+const BaseComponent = ({onBlur, OnBlurReduxChange, onFocus, onChange, value, label, startAdornment, endAdornment})=>
 <FormControl>
   <InputLabel htmlFor="amount">{label}</InputLabel>
   <Input
     value={value}
     onChange={onChange}
-    onBlur={onBlur}
+    onBlur={()=>{onBlur; OnBlurReduxChange}}
     onFocus={onFocus}
     startAdornment={<InputAdornment position={startAdornment.position}>{startAdornment.text}</InputAdornment>}
     endAdornment={<InputAdornment position={endAdornment.position}>{endAdornment.text}</InputAdornment>}

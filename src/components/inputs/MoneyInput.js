@@ -1,7 +1,7 @@
 /* @flow */
 import {withHandlers, withState, defaultProps, compose} from 'recompose';
 import BaseComponent from './BaseComponent'
-import {removeNonNumberCharacters, formatNumber} from '../Utils/StringUtils';
+import {removeNonNumberCharacters, formatNumber} from '../../utils/stringUtils';
 
 let EnhancedComponent = compose(
   defaultProps({

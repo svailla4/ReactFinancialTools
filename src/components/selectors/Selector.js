@@ -12,7 +12,7 @@ type Props ={
   label: string
 }
 
-const mapOptions =(data)=> Object.keys(data).map(key=>
+const mapOptions:Object =(data)=> Object.keys(data).map(key=>
   <option value={key} key={key}>{data[key]}</option>
 )
 
