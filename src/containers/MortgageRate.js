@@ -12,6 +12,7 @@ const mapDispatchToProps = dispatch => {
 }
 
 const InputMortgageRate = connect(
+  null,
   mapDispatchToProps
 )(InterestRateInput)
  
