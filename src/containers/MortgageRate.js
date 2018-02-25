@@ -1,4 +1,4 @@
-/*@flow*/
+/* @flow */
 import { connect } from 'react-redux'
 import { addMortgageRate} from '../actions'
 import InterestRateInput from '../components/inputs/InterestRateInput'

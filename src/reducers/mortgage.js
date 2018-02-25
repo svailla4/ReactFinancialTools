@@ -26,11 +26,13 @@ type Action = {type:'ADD_MORTGAGE_AMOUNT', amount: number}
 const mortgage = (state: State = initialState, action : Action)=>{
   switch(action.type){
     case 'ADD_MORTGAGE_AMOUNT':
+    console.log("adding amount")
       return {
         ...state ,
         amount:  action.amount
       }
     case 'ADD_MORTGAGE_AMORTIZATION':
+        console.log("adding amortization")
       return{
         ...state,
         amortization: action.amortization

@@ -1,11 +1,13 @@
+/* @flow */
 import React, { Component } from 'react';
 import Reboot from 'material-ui/Reboot';
-import MortgageForm from './Components/MortgageCalulator/MortgageForm.js'
 import {createStore} from 'redux';
 import { Provider } from 'react-redux'
+import MortgageForm from './components/MortgageCalulator/MortgageForm';
+import financialToolApp from './reducers/index';
 
 
-let store = createStore() // TODO add reducers
+let store = createStore(financialToolApp)
 
 class App extends Component {
   render() {

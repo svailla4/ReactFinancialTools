@@ -23,7 +23,7 @@ const BaseComponent = ({onBlur, OnBlurReduxChange, onFocus, onChange, value, lab
   <Input
     value={value}
     onChange={onChange}
-    onBlur={()=>{onBlur; OnBlurReduxChange}}
+    onBlur={(e)=>{onBlur(e); OnBlurReduxChange(e.target.value)}}
     onFocus={onFocus}
     startAdornment={<InputAdornment position={startAdornment.position}>{startAdornment.text}</InputAdornment>}
     endAdornment={<InputAdornment position={endAdornment.position}>{endAdornment.text}</InputAdornment>}
