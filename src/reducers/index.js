@@ -1,5 +1,6 @@
-// Combining reducers in case that I add more containers
+/* @flow */
 
+// Combining reducers in case that I add more containers
 import { combineReducers } from 'redux'
 import mortgage from './mortgage'
  

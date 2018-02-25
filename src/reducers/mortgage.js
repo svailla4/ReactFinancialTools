@@ -1,14 +1,29 @@
-import * from ../StringUtils
+/* @flow */
 
 const initialState = {
-  amount: '100,000',
-  frequency: '12'
+  amount: 100000,
+  frequency: '12',
   term: '5yf',
-  rate: '3.00'
-  amortization: '25'
+  rate: 3.00,
+  amortization: 25
 }
 
-const mortgage = (state = initialState, action)=>{
+
+type State ={
+  amount: number,
+  amortization: number,
+  rate: number,
+  frequency: string,
+  term: string
+}
+
+type Action = {type:'ADD_MORTGAGE_AMOUNT', amount: number}
+            | {type:'ADD_MORTGAGE_AMORTIZATION', amortization: number}
+            | {type:'ADD_MORTGAGE_RATE', rate: number}
+            | {type:'ADD_MORTGAGE_TERM', term: string}
+            | {type:'ADD_MORTGAGE_FREQUENCY', frequency: string}
+
+const mortgage = (state: State = initialState, action : Action)=>{
   switch(action.type){
     case 'ADD_MORTGAGE_AMOUNT':
       return {
@@ -25,7 +40,7 @@ const mortgage = (state = initialState, action)=>{
         ...state,
         term: action.term
       }
-    case: 'ADD_MORTGAGE_RATE':
+    case 'ADD_MORTGAGE_RATE':
       return{
         ...state,
         rate: action.rate
@@ -40,3 +55,5 @@ const mortgage = (state = initialState, action)=>{
       return state
   }
 }
+
+export default mortgage
