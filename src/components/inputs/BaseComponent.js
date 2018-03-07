@@ -5,6 +5,7 @@ import type { HOC } from 'recompose'
 import TextField from 'material-ui/TextField';
 import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
 import { FormControl, FormHelperText } from 'material-ui/Form';
+import styled from "styled-components";
 
 type Props = {
   value: string,
@@ -17,8 +18,13 @@ type Props = {
   onChange: ()=>void
 }
 
+const StyledFormControl = styled(FormControl)`
+  width: 200px;
+`
+
+
 const BaseComponent = ({onBlur, OnBlurReduxChange, onFocus, onChange, value, label, startAdornment, endAdornment})=>
-<FormControl>
+<StyledFormControl>
   <InputLabel htmlFor="amount">{label}</InputLabel>
   <Input
     value={value}
@@ -28,7 +34,7 @@ const BaseComponent = ({onBlur, OnBlurReduxChange, onFocus, onChange, value, lab
     startAdornment={<InputAdornment position={startAdornment.position}>{startAdornment.text}</InputAdornment>}
     endAdornment={<InputAdornment position={endAdornment.position}>{endAdornment.text}</InputAdornment>}
   />
-</FormControl>
+</StyledFormControl>
 
 let EnhancedComponent: HOC <*,Props> = compose(
   defaultProps({

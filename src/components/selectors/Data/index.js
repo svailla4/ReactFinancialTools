@@ -17,3 +17,11 @@ export const frequency = {
   '52':'Weekly',
   '52A':'Accelerated Weekly'
 }
+
+export const amortization = {
+  '5':'5 years',
+  '10':'10 years',
+  '15':'15 years',
+  '20':'20 years',
+  '25':'25 years',
+}

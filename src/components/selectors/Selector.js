@@ -4,8 +4,9 @@ import Select from 'material-ui/Select';
 import * as React from 'react';
 import {withHandlers, withState, defaultProps, compose, withProps, mapProps} from 'recompose';
 import { FormControl, FormHelperText } from 'material-ui/Form';
-import {terms, frequency} from './Data/index'
+import {terms, frequency, amortization} from './Data/index'
 import type { HOC } from 'recompose'
+import styled from 'styled-components'
 
 type Props ={
   options: React.Node,
@@ -18,14 +19,18 @@ const mapOptions =(data)=> Object.keys(data).map(key=>
 
 const arrayType = mapOptions
 
+const StyledFormControl = styled(FormControl)`
+  width: 200px;
+`
+
 const BaseComponent = ({options, label})=>
-        <FormControl>
+        <StyledFormControl>
            <InputLabel htmlFor="terms">{label}</InputLabel>
            <Select
              native>
              {options}
            </Select>
-       </FormControl>
+       </StyledFormControl>
 
 const TermComponent: HOC<*, Props> = compose(
   defaultProps({
@@ -39,8 +44,15 @@ const FrequencyComponent: HOC<*, Props> = compose(
   })
 )(BaseComponent)
 
+const AmortizationComponent: HOC<*, Props> = compose(
+  defaultProps({
+    options: mapOptions(amortization)
+  })
+)(BaseComponent)
+
 
 export {
   FrequencyComponent,
-  TermComponent
+  TermComponent,
+  AmortizationComponent
 }
