@@ -9,7 +9,7 @@ const initialState = {
 }
 
 
-type State ={
+export type State ={
   amount: number,
   amortization: number,
   rate: number,

@@ -14,12 +14,14 @@ const FlexForm = Flex.extend`
 class MortgageForm extends React.Component{
   render(){
     return(
-      <Flex flexDirection="column">
-        <MortgageAmountInput label="Mortgage Amount"/>
-        <TermComponent label="Term and Type"/>
-        <MortgageRateInput label="Interest Rate" />
-        <AmortizationComponent label="Amortization"/>
-        <FrequencyComponent label="Payment Frequency"/>
+      <Flex flexDirection="row">
+        <Flex flexDirection="column">
+          <MortgageAmountInput label="Mortgage Amount"/>
+          <TermComponent label="Term and Type"/>
+          <MortgageRateInput label="Interest Rate" />
+          <AmortizationComponent label="Amortization"/>
+          <FrequencyComponent label="Payment Frequency"/>
+        </Flex>
       </Flex>
           )
         }

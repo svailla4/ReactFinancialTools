@@ -11,6 +11,12 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
+const mapStateToprops = state =>{
+  return{
+    amount: state.amount
+  }
+}
+
 const InputMortgageAmount = connect(
   null,
   mapDispatchToProps

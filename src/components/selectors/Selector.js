@@ -19,6 +19,7 @@ const mapOptions =(data)=> Object.keys(data).map(key=>
 
 const arrayType = mapOptions
 
+//TODO change the hard coded width to a props
 const StyledFormControl = styled(FormControl)`
   width: 200px;
 `
