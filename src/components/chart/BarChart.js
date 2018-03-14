@@ -1,8 +1,11 @@
 /* @flow */
 import React from 'react';
+import {compose} from 'recompose';
 import {Flex, Item} from '../FlexBox';
 import styled from 'styled-components'
 import type {State} from '../../reducers/mortgage'
+import {calculateMortgageAmortizations} from '../../utils/financialUtils';
+import type {MortgageValues} from '../../utils/financialUtils';
 
 const BarBox = styled.div`
   height:100%;
@@ -15,55 +18,51 @@ const Bar = styled.div`
   width: 100%;
 `
 
-const BarItems = ({amortization})=>{
-
+type BarItemsProps ={
+  amount:number,
+  amortization:number,
+  width: string,
+  payment:number,
+  amortizationSchedule:Array<number>
 }
 
-const calculateMortgageAmortizations = ({amount, frequency, term, rate, amortization}:State):Array<number>=>{
-    const extractedTerm:number = Number(term.charAt(0));
-    const extractedFrequency:number = Number(frequency.replace('/[^0-9]+/g', '')) // remove non number characters
-    const r:number = rate/ 100 / extractedFrequency;
-    const n:number = extractedFrequency * amortization;
-    const pv:number = amount;
-    const payment:number = computePaymentAmount(pv, r, n);
+const BarItems = ({amount, amortization, width, payment, amortizationSchedule}:BarItemsProps)=>{
+  let widthNum:number =Number(width.replace('/[^0-9]+/g', ''));
 
-    return computeAmortizationSchedule(pv, r, payment, n, amortization)
+  const barItems = amortizationSchedule.map((number)=>{
+    <BarItem key={number.toString()} height={amount/number * 100} width={widthNum/amortizationSchedule.length}
+    color={'black'}/>
+  });
+  return(
+    barItems
+  )
 }
 
-const computePaymentAmount = (pv:number, r:number, n:number):number=>{
-  const numerator:number = Math.pow(r*(1+r),n);
-  const denominator:number = Math.pow((1+r),n)-1;
-  return pv *(numerator/denominator);
-}
-
-const computeAmortizationSchedule = (pv:number, r:number, payment:number, n:number, amortization:number):Array<number>=>{
-  const amotizationArray:Array<number> = [];
-  amotizationArray.push(pv); // year 0 starts at 100%
-
-  for (var i = 1; i < amortization; i++) {
-    amotizationArray.push(computeFutureValue(pv, r, payment, n));
-  }
-
-  return amotizationArray;
-}
-
-const computeFutureValue = (pv:number, r:number, payment:number, n:number):number=>{
-    const numerator:number = Math.pow(1+r, n) -1;
-    const denominator:number = r;
-    const minuend:number = payment * (numerator/denominator);
-    const subtrahend: number = pv * Math.pow(1+r,n);
-    return subtrahend - minuend;
+type BaseComponentProps ={
+  height:string,
+  width:string,
+  color:string,
+  state:State
 }
 
 
-
-
-export const Graph = ({height, color, state})=>{
+const BaseComponent = ({height, width, color, state}:BaseComponentProps)=>{
+  const mortgagePaymentAmotizationSchedule:MortgageValues = calculateMortgageAmortizations(state);
+  const amount = state.amount;
+  const amortization = state.amortization;
+  const barItemProps = {amount, amortization, ...mortgagePaymentAmotizationSchedule, width};
   return(
     <Flex flexDirection="row" justifyContent="flex-start" alignItems="flex-end">
+      <BarItems {...barItemProps} />
     </Flex>
   )
 }
+
+
+const EnhancedComponent = compose({
+
+  }
+)
 
 const BarItem = ({height, color, width})=>{
   <BarBox width={width}>

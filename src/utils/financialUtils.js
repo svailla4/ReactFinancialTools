@@ -1,16 +1,26 @@
 /* @flow */
 import type {State} from '../reducers/mortgage'
 
-const calculateMortgageAmortizations = ({amount, frequency, term, rate, amortization}:State):Array<number>=>{
+export type MortgageValues={
+  amortizationSchedule:Array<number>,
+  payment:number
+}
+
+export const calculateMortgageAmortizations = ({amount, frequency, term, rate, amortization}:State):MortgageValues=>{
     const extractedTerm:number = Number(term.charAt(0));
-    const extractedFrequency:number = Number(frequency.replace('/[^0-9]+/g', '')) // remove non number characters
+    const extractedFrequency:number = Number(frequency.replace('/[^0-9]+/g', '')) // remove non numerical characters
     const r:number = rate/ 100 / extractedFrequency;
     const n:number = extractedFrequency * amortization;
     const pv:number = amount;
     const payment:number = computePaymentAmount(pv, r, n);
 
-    return computeAmortizationSchedule(pv, r, payment, n, amortization)
+    return {
+      amortizationSchedule: computeAmortizationSchedule(pv, r, payment, n, amortization),
+      payment: payment
+    }
 }
+
+
 
 const computePaymentAmount = (pv:number, r:number, n:number):number=>{
   const numerator:number = Math.pow(r*(1+r),n);
