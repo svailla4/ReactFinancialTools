@@ -3,7 +3,7 @@
 React Mortgage Calculator
 
 ## Notes
-The source code of this project is incomplete and is missing the custom graph that was made with Styled Components. Due to a hard drive failure I have not been able to recover it.
+The source code of this project is incomplete and is missing the custom graph that was made with Styled Components. I have not been able to recover it.
 
 ## Getting Started
 
